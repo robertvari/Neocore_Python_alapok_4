@@ -23,6 +23,8 @@ class Blackjack:
         self.start_round()
 
     def start_round(self):
+        self.clear_screen()
+
         # reset deck
         self.deck.create()
 
@@ -36,8 +38,9 @@ class Blackjack:
         for p in self.players:
             p.draw_card(self.deck)
 
+        print("-"*50, "Game Status", "-"*50)
         for p in self.players:
-            p.show_status()
+            p.status
 
     def intro(self):
         self.clear_screen()

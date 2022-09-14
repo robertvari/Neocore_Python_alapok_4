@@ -1,4 +1,4 @@
-import random
+import random, time
 
 class Player_Base:
     def __init__(self):
@@ -29,6 +29,7 @@ class Player_Base:
             # count hand
             if self.count_hand < random.randint(16, 19):
                 print(f"{self.full_name} draws a card")
+                time.sleep(random.uniform(0.5, 2))
 
                 my_new_card = deck.give_card()
 
@@ -37,7 +38,8 @@ class Player_Base:
 
                 self._hand.append(my_new_card)
             else:
-                print(f"{self.full_name} passes...")
+                print(f"{self.full_name} passes...\n")
+                time.sleep(random.uniform(0.5, 2))
                 self._in_game = False
 
     def init_hand(self, deck):
