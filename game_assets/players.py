@@ -25,19 +25,27 @@ class Player_Base:
         return self._credits
 
     def __str__(self) -> str:
-        return self._name
+        return f"{self._name}"
 
     def __repr__(self) -> str:
-        return self._name
+        return f"{self._name}"
 
 class Player(Player_Base):
-    pass
+    # overrides create() from base class
+    def create(self):
+        # runs base class create()
+        super().create()
+        self._name = input("What is your  name?")
 
-class AIPlayer(Player_Base):    
+class AIPlayer(Player_Base): 
     pass
 
 
 # testing players
 if __name__ == "__main__":
-    ai_player = AIPlayer()
-    print(ai_player)
+    ai_player1 = AIPlayer()
+    ai_player2 = AIPlayer()
+    ai_player3 = AIPlayer()
+    
+    player = Player()
+    print(player, ai_player1, ai_player2, ai_player3)
