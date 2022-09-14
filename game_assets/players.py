@@ -83,19 +83,23 @@ class Player(Player_Base):
         while self._in_game:
             self.show_hand()
             print(f"Your hand value is: {self.count_hand}")
+
+            if self.count_hand >= 21:
+                self._in_game = False
+                print("Your hand value is too much :(")
+                break
             
             user_input = input("Do you want to draw a new card? (y/n)")
-            if user_input == "n":
+            if user_input == "y":
+                new_card = deck.give_card()
+                print(f"Your new card: {new_card}")
+
+                if self.count_hand > 10 and new_card.value == 11:
+                    new_card.value = 1
+                
+                self._hand.append(new_card)
+            else:
                 self._in_game = False
-                break
-
-            new_card = deck.give_card()
-            print(f"Your new card: {new_card}")
-
-            if self.count_hand > 10 and new_card.value == 11:
-                new_card.value = 1
-            
-            self._hand.append(new_card)
 
 class AIPlayer(Player_Base): 
     pass
