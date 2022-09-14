@@ -44,6 +44,7 @@ class Player_Base:
 
     def init_hand(self, deck):
         self._hand.clear()
+        self._in_game = True
 
         new_card = deck.give_card()
         self._hand.append(new_card)
@@ -92,7 +93,10 @@ class Player(Player_Base):
 
             if self.count_hand >= 21:
                 self._in_game = False
-                print("Your hand value is too much :(")
+                print("You passes...")
+
+                if self.count_hand > 21:
+                    print("You lost this tudn... :(")
                 break
             
             user_input = input("Do you want to draw a new card? (y/n)")

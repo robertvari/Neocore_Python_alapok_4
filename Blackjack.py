@@ -1,4 +1,4 @@
-import os, random
+import os, random, time
 from game_assets.cards import Deck
 from game_assets.players import AIPlayer, Player
 
@@ -38,9 +38,31 @@ class Blackjack:
         for p in self.players:
             p.draw_card(self.deck)
 
-        print("-"*50, "Game Status", "-"*50)
-        for p in self.players:
-            p.status
+
+        self.get_winner()
+
+    def get_winner(self):
+        self.clear_screen()
+        print("-"*50, "Get Winner", "-"*50)
+        time.sleep(2)
+
+        players_in_turn = [player for player in self.players if player.count_hand <= 21]
+
+        if not players_in_turn:
+            print("Nobody wins this time.")
+        else:
+            winner_list = sorted(players_in_turn, key= lambda p: p.count_hand)
+
+            whinner = winner_list [-1]
+            print(f"The winner is: {whinner}")
+        
+        player_input = input("Do you want to play a new round? (y/n)")
+
+        if player_input == "y":
+            self.start_round()
+        else:
+            print("See you later!")
+            exit()
 
     def intro(self):
         self.clear_screen()
