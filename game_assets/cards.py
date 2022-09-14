@@ -1,5 +1,8 @@
+import random
+
+
 class Card:
-    def __init__(self, name, value):
+    def __init__(self, name: str, value: int):
         self._name = name
         self._value = value
 
@@ -14,12 +17,15 @@ class Card:
     def __str__(self) -> str:
         return f"{self.name} {self.value}"
 
+    def __repr__(self) -> str:
+        return f"{self.name} {self.value}"
+
 class Deck:
     def __init__(self):
         # create list for cards
         self._cards = []
 
-        # TODO generate gards and shuffle deck
+        # generate gards and shuffle deck
         self.create()
 
     def create(self):
@@ -49,14 +55,19 @@ class Deck:
                 card_suit = name
                 card_name = card_data[0]
                 card_value = card_data[1]
-                print(card_suit, card_name, card_value)
+            
+                self._cards.append(
+                    Card(f"{card_suit} {card_name}", card_value)
+                )
+        
+        random.shuffle(self._cards)
 
     def show(self):
         if not self._cards:
             print("There are no cards in this deck :(")
         else:
-            print(self._cards)
+            for i in self._cards:
+                print(i)
 
 
 deck = Deck()
-deck.show()
