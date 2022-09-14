@@ -14,6 +14,12 @@ class Card:
     def value(self):
         return self._value
 
+    @value.setter
+    def value(self, new_value):
+        assert isinstance(new_value, int), "Value must be of type int"
+        assert new_value >= 1 and new_value <= 11, "Value must be between 1 and 11"
+        self._value = new_value
+
     def __str__(self) -> str:
         return f"{self.name} {self.value}"
 

@@ -27,13 +27,14 @@ class Player_Base:
     def draw_card(self, deck):
         while self._in_game:
             # count hand
-            hand_value = self.count_hand
-
-            if hand_value < random.randint(16, 19):
+            if self.count_hand < random.randint(16, 19):
                 print(f"{self.full_name} draws a card")
-                
+
                 my_new_card = deck.give_card()
-                # print(f"My new card is: {my_new_card}")
+
+                if self.count_hand > 10 and my_new_card.value == 11:
+                    my_new_card.value = 1
+
                 self._hand.append(my_new_card)
             else:
                 print(f"{self.full_name} passes...")
