@@ -25,6 +25,7 @@ class Deck:
     def create(self):
         self._cards.clear()
 
+        # common variables
         cards = [
             ["2", 2],
             ["3", 3],
@@ -42,6 +43,13 @@ class Deck:
         ]
 
         names = ["Heart", "Club", "Diamond", "Spade"]
+
+        for name in names:
+            for card_data in cards:
+                card_suit = name
+                card_name = card_data[0]
+                card_value = card_data[1]
+                print(card_suit, card_name, card_value)
 
     def show(self):
         if not self._cards:
