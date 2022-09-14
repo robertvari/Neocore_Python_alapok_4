@@ -25,11 +25,27 @@ class Player_Base:
         return self._credits
 
     def draw_card(self, deck):
-        print(f"{self.full_name} draws a card")
+        while self._in_game:
+            # count hand
+            hand_value = self.count_hand
 
-        my_new_card = deck.give_card()
-        # print(f"My new card is: {my_new_card}")
-        self._hand.append(my_new_card)
+            if hand_value < random.randint(16, 19):
+                print(f"{self.full_name} draws a card")
+                
+                my_new_card = deck.give_card()
+                # print(f"My new card is: {my_new_card}")
+                self._hand.append(my_new_card)
+            else:
+                print(f"{self.full_name} passes...")
+                self._in_game = False
+
+    @property
+    def count_hand(self):
+        # count = 0
+        # for card in self._hand:
+        #     count += card.value
+
+        return sum([card.value for card in self._hand])
 
     def show_hand(self):
         print(self._hand)
@@ -57,9 +73,5 @@ if __name__ == "__main__":
     deck = Deck()
 
     ai_player = AIPlayer()
-    ai_player.draw_card(deck)
-    ai_player.draw_card(deck)
-    ai_player.draw_card(deck)
-    ai_player.draw_card(deck)
     ai_player.draw_card(deck)
     ai_player.show_hand()
