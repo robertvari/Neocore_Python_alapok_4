@@ -24,6 +24,16 @@ class Player_Base:
     def credits(self):
         return self._credits
 
+    def draw_card(self, deck):
+        print(f"{self.full_name} draws a card")
+
+        my_new_card = deck.give_card()
+        # print(f"My new card is: {my_new_card}")
+        self._hand.append(my_new_card)
+
+    def show_hand(self):
+        print(self._hand)
+
     def __str__(self) -> str:
         return f"{self._name}"
 
@@ -43,9 +53,13 @@ class AIPlayer(Player_Base):
 
 # testing players
 if __name__ == "__main__":
-    ai_player1 = AIPlayer()
-    ai_player2 = AIPlayer()
-    ai_player3 = AIPlayer()
-    
-    player = Player()
-    print(player, ai_player1, ai_player2, ai_player3)
+    from cards import Deck
+    deck = Deck()
+
+    ai_player = AIPlayer()
+    ai_player.draw_card(deck)
+    ai_player.draw_card(deck)
+    ai_player.draw_card(deck)
+    ai_player.draw_card(deck)
+    ai_player.draw_card(deck)
+    ai_player.show_hand()

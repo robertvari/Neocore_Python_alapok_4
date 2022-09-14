@@ -23,8 +23,6 @@ class Card:
 
 class Deck:
     def __init__(self):
-        print("CREADE DECK OF CARDS!!!!")
-
         # create list for cards
         self._cards = []
 
@@ -64,6 +62,11 @@ class Deck:
                 )
         
         random.shuffle(self._cards)
+
+    def give_card(self):
+        new_card = self._cards[0]
+        self._cards.remove(new_card)
+        return new_card
 
     def show(self):
         if not self._cards:
