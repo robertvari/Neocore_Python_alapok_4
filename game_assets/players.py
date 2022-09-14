@@ -40,6 +40,18 @@ class Player_Base:
                 print(f"{self.full_name} passes...")
                 self._in_game = False
 
+    def init_hand(self, deck):
+        self._hand.clear()
+
+        new_card = deck.give_card()
+        self._hand.append(new_card)
+
+        new_card = deck.give_card()
+
+        if self.count_hand > 10 and new_card.value == 11:
+            new_card.set_value(1)
+        self._hand.append(new_card)
+
     @property
     def count_hand(self):
         # count = 0
@@ -62,7 +74,28 @@ class Player(Player_Base):
     def create(self):
         # runs base class create()
         super().create()
-        self._name = input("What is your  name?")
+        # self._name = input("What is your  name?")
+        self._name = "Robert Vari"
+
+    def draw_card(self, deck):
+        print(f"This is your turn {self._name.split()[0]}")
+
+        while self._in_game:
+            self.show_hand()
+            print(f"Your hand value is: {self.count_hand}")
+            
+            user_input = input("Do you want to draw a new card? (y/n)")
+            if user_input == "n":
+                self._in_game = False
+                break
+
+            new_card = deck.give_card()
+            print(f"Your new card: {new_card}")
+
+            if self.count_hand > 10 and new_card.value == 11:
+                new_card.value = 1
+            
+            self._hand.append(new_card)
 
 class AIPlayer(Player_Base): 
     pass
@@ -73,6 +106,6 @@ if __name__ == "__main__":
     from cards import Deck
     deck = Deck()
 
-    ai_player = AIPlayer()
-    ai_player.draw_card(deck)
-    ai_player.show_hand()
+    player = Player()
+    player.init_hand(deck)
+    player.draw_card(deck)
