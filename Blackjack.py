@@ -1,4 +1,4 @@
-import os
+import os, random
 from game_assets.cards import Deck
 from game_assets.players import AIPlayer, Player
 
@@ -11,9 +11,33 @@ class Blackjack:
         # create deck of cards
         self.deck = Deck()
 
-        # TODO create player
-        # TODO create AI Players
-        # TODO Start first round
+        # create player and create AI Players
+        self.players = [
+            Player(),
+            AIPlayer(),
+            AIPlayer(),
+            AIPlayer()
+        ]
+
+        # Start first round
+        self.start_round()
+
+    def start_round(self):
+        # reset deck
+        self.deck.create()
+
+        # shuffle player list
+        random.shuffle(self.players)
+
+        # reset player hands
+        for p in self.players:
+            p.init_hand(self.deck)
+
+        for p in self.players:
+            p.draw_card(self.deck)
+
+        for p in self.players:
+            p.show_status()
 
     def intro(self):
         self.clear_screen()

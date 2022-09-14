@@ -60,6 +60,10 @@ class Player_Base:
 
         return sum([card.value for card in self._hand])
 
+    @property
+    def status(self):
+        print(f"{self._name} Hand: {self._hand} Hand Value: {self.count_hand}")
+
     def show_hand(self):
         print(self._hand)
 
