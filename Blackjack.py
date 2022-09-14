@@ -1,4 +1,5 @@
 import os
+from game_assets.cards import Deck
 
 class Blackjack:
     def __init__(self):
@@ -11,7 +12,7 @@ class Blackjack:
         # TODO Start first round
 
     def intro(self):
-        self.clear_screen()
+        # self.clear_screen()
         print("="*50, "BLACKJACK", "="*50)
         print("Welcome to my game of Blackjack...")
         print("TODO game rules")

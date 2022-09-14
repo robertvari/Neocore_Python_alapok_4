@@ -20,8 +20,11 @@ class Card:
     def __repr__(self) -> str:
         return f"{self.name} {self.value}"
 
+
 class Deck:
     def __init__(self):
+        print("CREADE DECK OF CARDS!!!!")
+
         # create list for cards
         self._cards = []
 
@@ -70,4 +73,6 @@ class Deck:
                 print(i)
 
 
-deck = Deck()
+# runs only when this file is executed
+if __name__ == "__main__":
+    deck = Deck()
